@@ -8,6 +8,12 @@ Clone the repositary.
 $ git clone git@github.com:michalciberej/crud-app.git
 ```
 
+Change directory.
+
+```bash
+$ cd crud-app
+```
+
 Install dependencies.
 
 ```bash
