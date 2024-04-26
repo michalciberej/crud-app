@@ -31,7 +31,7 @@ const postsSlice = createSlice({
     },
     updatePost: (state, action) => {
       state.data = state.data.map((post: Post) =>
-        post.id === Number(action.payload.id) ? action.payload : post
+        post.id === +action.payload.id ? action.payload : post
       );
     },
   },
