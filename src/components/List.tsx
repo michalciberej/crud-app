@@ -15,7 +15,7 @@ const List = () => {
 
   return (
     <div className='flex justify-center items-center'>
-      <ul className='min-w-1/3 w-full gap-y-2 flex flex-col'>
+      <ul className='w-full gap-y-2 flex flex-col'>
         {posts.loading && <li className='text-center'>Loading...</li>}
         {posts.data.length > 0 &&
           posts.data.map((post: Post) => (
@@ -26,7 +26,7 @@ const List = () => {
                 <div className='p-5 flex flex-col gap-1'>
                   <p>ID: {post.id}</p>
                   <h4 className='text-red font-bold'>{post.title}</h4>
-                  <p className='max-w-[65ch] min-w-80'>{post.body}</p>
+                  <p className='max-w-[100ch]'>{post.body}</p>
                 </div>
                 <button
                   className='absolute top-0 right-0 m-5 text-lg bg-slate-700 text-slate-50 px-[7px] rounded-full flex justify-center items-center leading-tight hover:bg-slate-900'
