@@ -11,8 +11,8 @@ const initialState: PostsState = {
   error: null,
 };
 
-export const fetchPosts = createAsyncThunk('user/fetchUsers', () => {
-  return axios
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  return await axios
     .get('https://jsonplaceholder.typicode.com/posts')
     .then((response) => response.data);
 });
@@ -22,7 +22,17 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     addPost: (state, action) => {
-      state.data.push(action.payload);
+      const doesIDExist = state.data.filter(
+        (post) => post.id === +action.payload.id
+      );
+
+      if (doesIDExist.length > 0) {
+        state.data = state.data.map((post: Post) =>
+          post.id === +action.payload.id ? action.payload : post
+        );
+      } else {
+        state.data.push(action.payload);
+      }
     },
     removePost: (state, action) => {
       state.data = state.data.filter(

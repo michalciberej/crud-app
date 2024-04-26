@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { useAppDispatch } from '../hooks/hooks';
 import { Post } from '../types';
@@ -25,51 +25,64 @@ const Form = () => {
   };
 
   return (
-    <form className='flex flex-col border gap-2 p-5 sticky h-min top-2'>
-      <input
-        type='number'
-        min={0}
-        name='id'
-        className='border px-2'
-        value={formData.id}
-        placeholder='Id'
-        onChange={(e) => handleChange(e)}
-      />
-      <input
-        type='text'
-        name='title'
-        className='border px-2'
-        value={formData.title}
-        placeholder='Title'
-        onChange={(e) => handleChange(e)}
-      />
-      <textarea
-        name='body'
-        className='border px-2'
-        value={formData.body}
-        placeholder='Body'
-        onChange={(e) => handleChange(e)}
-      />
-      <button
-        type='button'
-        className='w-full bg-slate-300'
-        onClick={(e) => {
-          e.preventDefault();
-          dispatch(addPost(formData));
-          setFormData(emptyPost);
-        }}>
-        Submit
-      </button>
-      <button
-        type='button'
-        className='w-full bg-slate-300'
-        onClick={(e) => {
-          e.preventDefault();
-          dispatch(updatePost(formData));
-          setFormData(emptyPost);
-        }}>
-        Update
-      </button>
+    <form className='flex flex-col border border-slate-700 bg-slate-300 gap-2 p-5 sticky h-min top-2'>
+      <h2 className='text-xl text-center font-bold'>Add or Update posts</h2>
+      <div>
+        <label htmlFor='id'>
+          ID
+          <input
+            type='number'
+            min={0}
+            name='id'
+            className='border px-2 border-slate-700 w-full'
+            value={formData.id}
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+        <label htmlFor='title'>
+          Title
+          <input
+            type='text'
+            name='title'
+            id='title'
+            className='border px-2 border-slate-700 w-full'
+            value={formData.title}
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+        <label htmlFor='body'>
+          Body
+          <textarea
+            name='body'
+            id='body'
+            className='border px-2 border-slate-700 w-full'
+            value={formData.body}
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+      </div>
+      <div className='flex gap-2'>
+        <button
+          type='button'
+          className='w-full bg-slate-700 text-slate-50 py-1 hover:bg-slate-900 focus:bg-slate-900'
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(addPost(formData));
+            setFormData(emptyPost);
+          }}>
+          Add Post
+        </button>
+        <button
+          type='button'
+          className='w-full bg-slate-700 text-slate-50 py-1 hover:bg-slate-900 focus:bg-slate-900'
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(updatePost(formData));
+            setFormData(emptyPost);
+          }}>
+          Update Post
+        </button>
+      </div>
     </form>
   );
 };
